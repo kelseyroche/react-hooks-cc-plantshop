@@ -21,7 +21,6 @@ function NewPlantForm({setPlants}) {
       },
       body: JSON.stringify({
         ...formData,
-        //price: parseFloat(formData.price), 
       }),
     })
       .then((response) => response.json())

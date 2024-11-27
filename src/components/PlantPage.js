@@ -21,13 +21,29 @@ function PlantPage() {
   const displayedPlants = plants.filter((plant) =>
     plant.name.toLowerCase().includes(searchWord.toLowerCase())
   )
+
+  function handleUpdatePrice(id, newPrice) {
+    setPlants((plants) =>
+      plants.map((plant) =>
+        plant.id === id ? { ...plant, price: newPrice } : plant
+      )
+    );
+  }
+
+  function handleDelete(id) {
+    setPlants((plants) => plants.filter((plant) => plant.id !== id));
+  }
   
   return (
     <main>
       <NewPlantForm setPlants={setPlants}/>
       <Search onSearch={handleSearch}/>
-      <PlantList plants={displayedPlants} setPlants = {setPlants}/>
-    </main>
+      <PlantList
+        plants={displayedPlants}
+        onUpdatePrice={handleUpdatePrice}
+        onDelete={handleDelete}
+      />    
+      </main>
   );
 }
 
